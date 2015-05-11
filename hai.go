@@ -22,7 +22,7 @@ func bubbleLetterField(letter string) BubbleLetter {
 	fmt.Println("LETTER:", letter)
 	switch letter {
 	case "a", "A":
-		return BubbleLetter{First: 7, Second: 5, Third: 7, Fourth: 5, Fifth: 5}
+		return BubbleLetter{First: 2, Second: 5, Third: 7, Fourth: 5, Fifth: 5}
 	case "b", "B":
 		return BubbleLetter{First: 7, Second: 5, Third: 6, Fourth: 5, Fifth: 7}
 	case "c", "C":
@@ -46,33 +46,33 @@ func bubbleLetterField(letter string) BubbleLetter {
 	case "l", "L":
 		return BubbleLetter{First: 4, Second: 4, Third: 4, Fourth: 4, Fifth: 7}
 	case "m", "M":
-		return BubbleLetter{First: 7, Second: 4, Third: 7, Fourth: 4, Fifth: 7}
+		return BubbleLetter{First: 5, Second: 7, Third: 5, Fourth: 5, Fifth: 5}
 	case "n", "N":
-		return BubbleLetter{First: 7, Second: 4, Third: 7, Fourth: 4, Fifth: 7}
+		return BubbleLetter{First: 5, Second: 7, Third: 7, Fourth: 7, Fifth: 5}
 	case "o", "O":
-		return BubbleLetter{First: 7, Second: 4, Third: 7, Fourth: 4, Fifth: 7}
+		return BubbleLetter{First: 7, Second: 5, Third: 5, Fourth: 5, Fifth: 7}
 	case "p", "P":
-		return BubbleLetter{First: 7, Second: 4, Third: 7, Fourth: 4, Fifth: 7}
+		return BubbleLetter{First: 7, Second: 5, Third: 7, Fourth: 4, Fifth: 4}
 	case "q", "Q":
-		return BubbleLetter{First: 7, Second: 4, Third: 7, Fourth: 4, Fifth: 7}
+		return BubbleLetter{First: 7, Second: 5, Third: 5, Fourth: 7, Fifth: 1}
 	case "r", "R":
-		return BubbleLetter{First: 7, Second: 4, Third: 7, Fourth: 4, Fifth: 7}
+		return BubbleLetter{First: 7, Second: 5, Third: 6, Fourth: 5, Fifth: 5}
 	case "s", "S":
-		return BubbleLetter{First: 7, Second: 4, Third: 7, Fourth: 4, Fifth: 7}
+		return BubbleLetter{First: 7, Second: 4, Third: 7, Fourth: 1, Fifth: 7}
 	case "t", "T":
-		return BubbleLetter{First: 7, Second: 4, Third: 7, Fourth: 4, Fifth: 7}
+		return BubbleLetter{First: 7, Second: 2, Third: 2, Fourth: 2, Fifth: 2}
 	case "u", "U":
-		return BubbleLetter{First: 7, Second: 4, Third: 7, Fourth: 4, Fifth: 7}
+		return BubbleLetter{First: 5, Second: 5, Third: 5, Fourth: 5, Fifth: 7}
 	case "v", "V":
-		return BubbleLetter{First: 7, Second: 4, Third: 7, Fourth: 4, Fifth: 7}
+		return BubbleLetter{First: 5, Second: 5, Third: 5, Fourth: 5, Fifth: 2}
 	case "w", "W":
 		return BubbleLetter{First: 7, Second: 4, Third: 7, Fourth: 4, Fifth: 7}
 	case "x", "X":
-		return BubbleLetter{First: 7, Second: 4, Third: 7, Fourth: 4, Fifth: 7}
+		return BubbleLetter{First: 5, Second: 5, Third: 2, Fourth: 5, Fifth: 5}
 	case "y", "Y":
-		return BubbleLetter{First: 7, Second: 4, Third: 7, Fourth: 4, Fifth: 7}
+		return BubbleLetter{First: 5, Second: 5, Third: 2, Fourth: 2, Fifth: 2}
 	case "z", "Z":
-		return BubbleLetter{First: 7, Second: 4, Third: 7, Fourth: 4, Fifth: 7}
+		return BubbleLetter{First: 7, Second: 1, Third: 2, Fourth: 4, Fifth: 7}
 	default:
 		return BubbleLetter{First: 5, Second: 0, Third: 2, Fourth: 0, Fifth: 7}
 	}
