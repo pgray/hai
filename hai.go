@@ -5,11 +5,21 @@ import (
 	//	"io/ioutil"
 	"net/http"
 	//	"strings"
-
 	//	"appengine"
 	//  "appengine/urlfetch"
 )
 
+/*Each letter is 5 units high and 3 units wide.
+BubbleLetter stores 5 numbers between 0 and 7,
+that, when converted to binary, represent the
+existence or absence of a face in each unit.
+example "e","E":
+7: 1 1 1
+4: 1 0 0
+7: 1 1 1
+4: 1 0 0
+7: 1 1 1
+*/
 type BubbleLetter struct {
 	First  int
 	Second int
@@ -86,9 +96,70 @@ func bubbleWordField(word string) []BubbleLetter {
 	return wordField
 }
 
+func fieldToString(i int) string {
+	switch i {
+	case 0:
+		return "                        "
+	case 1:
+		return "                :simple_smile:"
+	case 2:
+		return "        :simple_smile:        "
+	case 3:
+		return "        :simple_smile::simple_smile:"
+	case 4:
+		return ":simple_smile:                "
+	case 5:
+		return ":simple_smile:        :simple_smile:"
+	case 6:
+		return ":simple_smile::simple_smile:        "
+	case 7:
+		return ":simple_smile::simple_smile::simple_smile:"
+	default:
+		return "Somehow, the integer passed to fieldToString was not 0-7..."
+	}
+}
+
+func wordFieldToString(wordField []BubbleLetter) string {
+	var firstString []byte
+	var secondString []byte
+	var thirdString []byte
+	var fourthString []byte
+	var fifthString []byte
+
+	for i, _ := range wordField {
+		firstString = append(firstString, fieldToString(wordField[i].First)...)
+		secondString = append(secondString, fieldToString(wordField[i].Second)...)
+		thirdString = append(thirdString, fieldToString(wordField[i].Third)...)
+		fourthString = append(fourthString, fieldToString(wordField[i].Fourth)...)
+		fifthString = append(fifthString, fieldToString(wordField[i].Fifth)...)
+		//add space after each letter
+		firstString = append(firstString, "    "...)
+		secondString = append(secondString, "    "...)
+		thirdString = append(thirdString, "    "...)
+		fourthString = append(fourthString, "    "...)
+		fifthString = append(fifthString, "    "...)
+	}
+	firstString = append(firstString, "\n"...)
+	secondString = append(secondString, "\n"...)
+	thirdString = append(thirdString, "\n"...)
+	fourthString = append(fourthString, "\n"...)
+	responseString := append(firstString, secondString...)
+	responseString = append(responseString, thirdString...)
+	responseString = append(responseString, fourthString...)
+	responseString = append(responseString, fifthString...)
+	return string(responseString)
+}
+
 func handler(w http.ResponseWriter, r *http.Request) {
-	thing := bubbleWordField("Word")
-	fmt.Fprintf(w, "%s %d %d %d %d %d", r.FormValue("text"), thing[0].First, thing[0].Second, thing[0].Third, thing[0].Fourth, thing[0].Fifth)
+	fmt.Println(r.FormValue("text"))
+
+	thing := bubbleWordField(r.FormValue("text"))
+
+	fmt.Println(thing[0].First, thing[0].Second, thing[0].Third, thing[0].Fourth, thing[0].Fifth)
+
+	fmt.Fprintf(w, "%s", wordFieldToString(bubbleWordField(r.FormValue("text"))))
+
+	fmt.Println("After write")
 }
 
 func main() {
