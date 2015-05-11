@@ -73,6 +73,8 @@ func bubbleLetterField(letter string) BubbleLetter {
 		return BubbleLetter{First: 7, Second: 4, Third: 7, Fourth: 4, Fifth: 7}
 	case "z", "Z":
 		return BubbleLetter{First: 7, Second: 4, Third: 7, Fourth: 4, Fifth: 7}
+	default:
+		return BubbleLetter{First: 5, Second: 0, Third: 2, Fourth: 0, Fifth: 7}
 	}
 }
 
