@@ -155,7 +155,6 @@ func wordFieldToString(wordField []BubbleLetter, emoji string) string {
 func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r.FormValue("text"))
 	fmt.Fprintf(w, "%s", wordFieldToString(bubbleWordField(r.FormValue("text")), "simple_smile"))
-	fmt.Println("After write")
 }
 
 func main() {
