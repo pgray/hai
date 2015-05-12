@@ -96,30 +96,30 @@ func bubbleWordField(word string) []BubbleLetter {
 	return wordField
 }
 
-func fieldToString(i int) string {
+func fieldToString(i int, emoji string) string {
 	switch i {
 	case 0:
 		return "                        "
 	case 1:
-		return "                :simple_smile:"
+		return "                :" + emoji + ":"
 	case 2:
-		return "        :simple_smile:        "
+		return "        :" + emoji + ":        "
 	case 3:
-		return "        :simple_smile::simple_smile:"
+		return "        :" + emoji + "::" + emoji + ":"
 	case 4:
-		return ":simple_smile:                "
+		return ":" + emoji + ":                "
 	case 5:
-		return ":simple_smile:        :simple_smile:"
+		return ":" + emoji + ":        :" + emoji + ":"
 	case 6:
-		return ":simple_smile::simple_smile:        "
+		return ":" + emoji + "::" + emoji + ":        "
 	case 7:
-		return ":simple_smile::simple_smile::simple_smile:"
+		return ":" + emoji + "::" + emoji + "::" + emoji + ":"
 	default:
 		return "Somehow, the integer passed to fieldToString was not 0-7..."
 	}
 }
 
-func wordFieldToString(wordField []BubbleLetter) string {
+func wordFieldToString(wordField []BubbleLetter, emoji string) string {
 	var firstString []byte
 	var secondString []byte
 	var thirdString []byte
@@ -127,22 +127,24 @@ func wordFieldToString(wordField []BubbleLetter) string {
 	var fifthString []byte
 
 	for i, _ := range wordField {
-		firstString = append(firstString, fieldToString(wordField[i].First)...)
-		secondString = append(secondString, fieldToString(wordField[i].Second)...)
-		thirdString = append(thirdString, fieldToString(wordField[i].Third)...)
-		fourthString = append(fourthString, fieldToString(wordField[i].Fourth)...)
-		fifthString = append(fifthString, fieldToString(wordField[i].Fifth)...)
-		//add space after each letter
+		firstString = append(firstString, fieldToString(wordField[i].First, emoji)...)
+		secondString = append(secondString, fieldToString(wordField[i].Second, emoji)...)
+		thirdString = append(thirdString, fieldToString(wordField[i].Third, emoji)...)
+		fourthString = append(fourthString, fieldToString(wordField[i].Fourth, emoji)...)
+		fifthString = append(fifthString, fieldToString(wordField[i].Fifth, emoji)...)
+		//add 4 spaces after each letter for... spacing
 		firstString = append(firstString, "    "...)
 		secondString = append(secondString, "    "...)
 		thirdString = append(thirdString, "    "...)
 		fourthString = append(fourthString, "    "...)
 		fifthString = append(fifthString, "    "...)
 	}
+	//add newlines to each finished string
 	firstString = append(firstString, "\n"...)
 	secondString = append(secondString, "\n"...)
 	thirdString = append(thirdString, "\n"...)
 	fourthString = append(fourthString, "\n"...)
+	//append the 5 string into a single multi-line string
 	responseString := append(firstString, secondString...)
 	responseString = append(responseString, thirdString...)
 	responseString = append(responseString, fourthString...)
@@ -152,13 +154,7 @@ func wordFieldToString(wordField []BubbleLetter) string {
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r.FormValue("text"))
-
-	thing := bubbleWordField(r.FormValue("text"))
-
-	fmt.Println(thing[0].First, thing[0].Second, thing[0].Third, thing[0].Fourth, thing[0].Fifth)
-
-	fmt.Fprintf(w, "%s", wordFieldToString(bubbleWordField(r.FormValue("text"))))
-
+	fmt.Fprintf(w, "%s", wordFieldToString(bubbleWordField(r.FormValue("text")), "simple_smile"))
 	fmt.Println("After write")
 }
 
