@@ -2,11 +2,7 @@ package main
 
 import (
 	"fmt"
-	//	"io/ioutil"
 	"net/http"
-	//	"strings"
-	//	"appengine"
-	//  "appengine/urlfetch"
 )
 
 /*Each letter is 5 units high and 3 units wide.
