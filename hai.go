@@ -72,7 +72,7 @@ func bubbleLetterField(letter string) BubbleLetter {
 	case "v", "V":
 		return BubbleLetter{First: 5, Second: 5, Third: 5, Fourth: 5, Fifth: 2}
 	case "w", "W":
-		return BubbleLetter{First: 7, Second: 4, Third: 7, Fourth: 4, Fifth: 7}
+		return BubbleLetter{First: 5, Second: 5, Third: 5, Fourth: 7, Fifth: 5}
 	case "x", "X":
 		return BubbleLetter{First: 5, Second: 5, Third: 2, Fourth: 5, Fifth: 5}
 	case "y", "Y":
@@ -155,5 +155,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/", handler)
+	fmt.Println("serving on localhost:8080")
 	http.ListenAndServe(":8080", nil)
 }
