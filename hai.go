@@ -79,6 +79,8 @@ func bubbleLetterField(letter string) BubbleLetter {
 		return BubbleLetter{First: 5, Second: 5, Third: 2, Fourth: 2, Fifth: 2}
 	case "z", "Z":
 		return BubbleLetter{First: 7, Second: 1, Third: 2, Fourth: 4, Fifth: 7}
+	case " ":
+		return BubbleLetter{First: 0, Second: 0, Third: 0, Fourth: 0, Fifth: 0}
 	default:
 		return BubbleLetter{First: 5, Second: 0, Third: 2, Fourth: 0, Fifth: 7}
 	}
@@ -150,7 +152,12 @@ func wordFieldToString(wordField []BubbleLetter, emoji string) string {
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r.FormValue("text"))
-	fmt.Fprintf(w, "%s", wordFieldToString(bubbleWordField(r.FormValue("text")), "simple_smile"))
+	fmt.Println(r.FormValue("emoji"))
+	if r.FormValue("emoji") == "" {
+		fmt.Fprintf(w, "%s", wordFieldToString(bubbleWordField(r.FormValue("text")), "simple_smile"))
+	} else {
+		fmt.Fprintf(w, "%s", wordFieldToString(bubbleWordField(r.FormValue("text")), r.FormValue("emoji")))
+	}
 }
 
 func main() {
